@@ -7,8 +7,8 @@
  * Then write a second version that does it in reverse
  * (from last element to first).
  */
-#ifndef PRACTICE25041_H
-#define PRACTICE25041_H
+#ifndef PRACTICE2504_H
+#define PRACTICE2504_H
  #include <stdio.h>
  #include <stdint.h>
 

@@ -1,10 +1,10 @@
 #include "unity/unity.h"
-#include "practice25041.h"
+#include "practice2504.h"
 
 void setUp(void)    {}
 void tearDown(void) {}
 
-/* --- normal cases --- */
+/* --- normal cases array sum --- */
 
 void test_known_buffer_sum(void) {
     /* 1+2+3+4+5+6+8+7+10+12 = 58 */
@@ -24,6 +24,30 @@ void test_all_zeros(void) {
 void test_partial_buffer(void) {
     /* first 3 elements of buffer: 1+2+3 = 6 */
     TEST_ASSERT_EQUAL_UINT8(6, array_sum(buffer, 3));
+}
+
+/* --- normal cases array reverse --- */
+
+void test_odd_element_size(void){
+    uint8_t input[] = {1,2,3,4,5};
+    uint8_t expected[] = {5,4,3,2,1};
+    array_reverse(input,5);
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(expected, input, 5);
+}
+
+
+void test_even_element_size(void){
+    uint8_t input[] = {1,2,3,5};
+    uint8_t expected[] = {5,3,2,1};
+    array_reverse(input,4);
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(expected, input, 4);
+}
+
+void test_singular_element_size(void){
+    uint8_t input[] = {2};
+    uint8_t expected[] = {2};
+    array_reverse(input,1);
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(expected, input, 1);
 }
 
 /* --- edge cases --- */
@@ -47,6 +71,10 @@ int main(void) {
     RUN_TEST(test_partial_buffer);
     RUN_TEST(test_size_zero_returns_zero);
     RUN_TEST(test_uint8_overflow_wraps);
+
+    RUN_TEST(test_even_element_size);
+    RUN_TEST(test_odd_element_size);
+    RUN_TEST(test_singular_element_size);
     UNITY_END();
     return 0;
 }

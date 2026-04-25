@@ -4,10 +4,10 @@ function(add_unity_test TEST_NAME)
         ${TEST_NAME}.c
     )
     target_link_libraries(${TEST_NAME}
-        PRIVATE practice25041 unity
+        PRIVATE practice2504 unity
     )
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endfunction()
 
 # Register tests here — one line per test file
-add_unity_test(test_practice25041)
+add_unity_test(test_practice2504)
