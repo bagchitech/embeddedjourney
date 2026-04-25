@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.16)
+project(EmbeddedJourney C)
+enable_testing()
+
+set(CMAKE_C_STANDARD 11)
+
+# Compiler flags — same as your old CFLAGS
+add_compile_options(
+    -Wall
+    -Wextra
+    -g
+)
+
+# Optional: AddressSanitizer (remove if GCC complains)
+# add_compile_options(-fsanitize=address)
+# add_link_options(-fsanitize=address)
+
+# Unity as a static library — built once, linked by all tests
+add_library(unity STATIC
+    unity/unity.c
+)
+target_include_directories(unity PUBLIC unity/)
+
+# Your implementation as a static library
+# main() must NOT be in here — tests supply their own main
+add_library(practice25041 STATIC
+    src/practice25041.c
+)
+target_include_directories(practice25041 PUBLIC src/)
+
+# Pull in the tests folder
+add_subdirectory(tests)
