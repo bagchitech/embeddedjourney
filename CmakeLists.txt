@@ -19,14 +19,14 @@ add_compile_options(
 add_library(unity STATIC
     unity/unity.c
 )
-target_include_directories(unity PUBLIC unity/)
+target_include_directories(unity PUBLIC .)
 
 # Your implementation as a static library
 # main() must NOT be in here — tests supply their own main
 add_library(practice2504 STATIC
     src/practice2504.c
 )
-target_include_directories(practice2504 PUBLIC src/)
+target_include_directories(practice2504 PUBLIC include/)
 
 # Pull in the tests folder
 add_subdirectory(tests)

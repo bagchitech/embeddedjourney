@@ -50,6 +50,16 @@ void test_singular_element_size(void){
     TEST_ASSERT_EQUAL_UINT8_ARRAY(expected, input, 1);
 }
 
+
+/*  ------normal case integer swap---*/
+
+void test_integer_swap(void){
+    int a = 6;
+    int b = 9;
+    swap_integers(&a,&b);
+    TEST_ASSERT_EQUAL_INT(a,9);
+    TEST_ASSERT_EQUAL_INT(b,6);
+}
 /* --- edge cases --- */
 
 void test_size_zero_returns_zero(void) {
@@ -75,6 +85,8 @@ int main(void) {
     RUN_TEST(test_even_element_size);
     RUN_TEST(test_odd_element_size);
     RUN_TEST(test_singular_element_size);
+
+    RUN_TEST(test_integer_swap);
     UNITY_END();
     return 0;
 }
