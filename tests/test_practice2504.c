@@ -1,8 +1,5 @@
-#include "unity/unity.h"
-#include "practice2504.h"
-
-void setUp(void)    {}
-void tearDown(void) {}
+#include "unity.h"
+#include "embeddedjourney/practice2504.h"
 
 /* --- normal cases array sum --- */
 
@@ -89,24 +86,3 @@ void test_cmd_table_edge(void){
     TEST_ASSERT_EQUAL_UINT8(cmd_response,99);
 }
 
-int main(void) {
-    UNITY_BEGIN();
-    RUN_TEST(test_known_buffer_sum);
-    RUN_TEST(test_single_element);
-    RUN_TEST(test_all_zeros);
-    RUN_TEST(test_partial_buffer);
-    RUN_TEST(test_size_zero_returns_zero);
-    RUN_TEST(test_uint8_overflow_wraps);
-
-    RUN_TEST(test_even_element_size);
-    RUN_TEST(test_odd_element_size);
-    RUN_TEST(test_singular_element_size);
-
-    RUN_TEST(test_integer_swap);
-
-    RUN_TEST(test_cmd_table_1);
-    RUN_TEST(test_cmd_table_2);
-    RUN_TEST(test_cmd_table_edge);
-    UNITY_END();
-    return 0;
-}
