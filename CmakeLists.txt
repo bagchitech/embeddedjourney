@@ -4,16 +4,11 @@ enable_testing()
 
 set(CMAKE_C_STANDARD 11)
 
-# Compiler flags — same as your old CFLAGS
 add_compile_options(
     -Wall
     -Wextra
     -g
 )
-
-# Optional: AddressSanitizer (remove if GCC complains)
-# add_compile_options(-fsanitize=address)
-# add_link_options(-fsanitize=address)
 
 # Unity as a static library — built once, linked by all tests
 add_library(unity STATIC
@@ -21,8 +16,6 @@ add_library(unity STATIC
 )
 target_include_directories(unity PUBLIC .)
 
-# Your implementation as a static library
-# main() must NOT be in here — tests supply their own main
 add_library(practice2504 STATIC
     src/practice2504.c
 )

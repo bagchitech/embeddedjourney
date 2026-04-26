@@ -60,6 +60,17 @@ void test_integer_swap(void){
     TEST_ASSERT_EQUAL_INT(a,9);
     TEST_ASSERT_EQUAL_INT(b,6);
 }
+
+/*** Command Table test cases ****/
+void test_cmd_table_1(void){
+    handle_command(3);
+    TEST_ASSERT_EQUAL_UINT8(cmd_response,4);
+}
+
+void test_cmd_table_2(void){
+    handle_command(2);
+    TEST_ASSERT_EQUAL_UINT8(cmd_response,3);
+}
 /* --- edge cases --- */
 
 void test_size_zero_returns_zero(void) {
@@ -71,6 +82,11 @@ void test_uint8_overflow_wraps(void) {
     /* uint8_t max is 255. 200+100 = 300, wraps to 44 */
     uint8_t arr[] = {200, 100};
     TEST_ASSERT_EQUAL_UINT8(44, array_sum(arr, 2));
+}
+
+void test_cmd_table_edge(void){
+    handle_command(7);
+    TEST_ASSERT_EQUAL_UINT8(cmd_response,99);
 }
 
 int main(void) {
@@ -87,6 +103,10 @@ int main(void) {
     RUN_TEST(test_singular_element_size);
 
     RUN_TEST(test_integer_swap);
+
+    RUN_TEST(test_cmd_table_1);
+    RUN_TEST(test_cmd_table_2);
+    RUN_TEST(test_cmd_table_edge);
     UNITY_END();
     return 0;
 }

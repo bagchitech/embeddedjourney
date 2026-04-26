@@ -4,6 +4,11 @@
 /*Buffer Definition*/
 uint8_t buffer[BUFFER_SIZE]={1,2,3,4,5,6,8,7,10,12};
 
+/*Command Table Definition*/
+cmd_func_t cmd_table[CMD_TABLE_SIZE]={cmd_led_on, cmd_led_off,cmd_reset,cmd_status};
+
+uint8_t cmd_response=0;
+
 /*Array Sum Function Definition*/
 uint8_t array_sum(uint8_t *arr, uint8_t size){
     uint8_t temp_sum = 0;
@@ -36,3 +41,42 @@ uint8_t array_sum(uint8_t *arr, uint8_t size){
     *a = *a - *b;
  }
 
+ /*Command definitions*/
+   void cmd_led_on(void){
+    cmd_response=1;
+   }
+  void cmd_led_off(void){
+    cmd_response=2;
+  }
+  void cmd_reset(void){
+    cmd_response=3;
+  }
+  void cmd_status(void){
+    cmd_response=4;
+  }
+ /*Command Table Dispatch Definition*/
+   void handle_command(uint8_t cmd){
+
+    switch (cmd)
+    {
+    case 0:
+        cmd_table[cmd]();
+        break;
+    
+    case 1:
+        cmd_table[cmd]();
+        break;
+
+    case 2:
+        cmd_table[cmd]();
+        break;
+
+    case 3:
+        cmd_table[cmd]();
+            break;
+    
+    default:
+        cmd_response=99;
+        break;
+    }
+   }

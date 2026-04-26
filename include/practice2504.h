@@ -43,7 +43,18 @@
  /*Buffer Declaration*/
  #define BUFFER_SIZE 10
 
+ /*Command Table Size*/
+ #define CMD_TABLE_SIZE 4
+
 extern uint8_t buffer[BUFFER_SIZE];
+
+/* Array of Function Pointers*/
+typedef void (*cmd_func_t)(void);
+extern cmd_func_t cmd_table[CMD_TABLE_SIZE];
+//learnt that typedef and extern cannot be done together
+
+/*Command Table Action*/
+extern uint8_t cmd_response;
 
 
 
@@ -56,6 +67,13 @@ extern uint8_t buffer[BUFFER_SIZE];
  /*Swap two Integers*/
  void swap_integers(int *a, int *b);
 
+ /*Declaration of the functions in the command table*/
+  void cmd_led_on(void);
+  void cmd_led_off(void);
+  void cmd_reset(void);
+  void cmd_status(void);
 
+  /*Command Table Dispatch Declaration*/
+   void handle_command(uint8_t cmd);
 
  #endif
